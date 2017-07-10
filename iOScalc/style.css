@@ -10,6 +10,8 @@ body {
 }
 
 .calc {  
+  border: 2px solid #000;
+  background: #202020;
   margin: 20px auto 0;
   height: 667px;
   width: 375px;
@@ -19,25 +21,20 @@ body {
 }
 
 .calc-display {
-  background: #202020;
-  color: #fff;
   flex-grow: 1;
   font-size: 75px;
   position: relative;
 }
 
 .calc-display .content {
-  bottom: 0.5vw;
+  color: #fff;
+  bottom: 5px;
   position: absolute;
-  right: 2vw;
-  transform-origin: right bottom;
+  right: 28px;
 }
 
 .calc-buttons {
-  background: #000000;
-  border: 2px solid #000;
-  border-right: 1.5px solid #000;
-  border-bottom: 0.5px solid #000;
+  border-left: 2px solid #000;
   display: flex;
   flex-wrap: wrap;
 }
@@ -55,7 +52,7 @@ body {
   background: #c9cacc;
   flex-basis: 25%;
   font-size: 41px;
-  font-weight: 200;
+  font-weight: 300;
   transition: opacity .6s;
   padding: 14px;
   border-right: 0.5px solid #000;
@@ -72,50 +69,50 @@ body {
  {
   color: #fff;
   background: #f58010;
-  font-size:  56px;
   font-weight: 200;
+  font-size:  56px;
 }
 
-#clear-button,
-#change-sign-button,
-#percent-button {
+#calc-buttons__clear,
+#calc-buttons__change-sign,
+#calc-buttons__percent{
   background: #bbbcbd;
    font-size: 30px;
 }
 
- #subtract-button {
+ #calc-buttons__subtract{
 	font-size:  50px;
-	font-weight: 200;
+	font-weight: 300;
 	padding-top:16px;
-		padding-bottom:16px;
+	padding-bottom:16px;
 	
   }
 
- #change-sign-button-minus {
+ #change-sign__minus {
     font-size: 38px;
 	line-height: 0;
     margin-left: -6px;
   }
 
-  #change-sign-button-plus {
+  #change-sign__plus {
     margin-right: -6px;
   }
 
-  #zero-button {
+  #calc-buttons__zero{
     padding-left: 36px;
 	text-align: left;
     flex-basis: 50%;
   }
 
 
-#multiply-button {
+#calc-buttons__multiply{
 	padding-top:6px;
 	padding-bottom:22px;
   }
 
-  #decimal-button {
+  #calc-buttons__decimal{
     font-size: 60px;
-	font-weight: 200;
+	font-weight: 250;
     line-height: 0;
     padding-bottom: 28px;
   }
