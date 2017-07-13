@@ -10,7 +10,7 @@ body {
 }
 
 .calc {
-  border: 2px solid #000;
+  border: 2px solid #000000;
   background: #202020;
   margin: 20px auto 0;
   height: 667px;
@@ -23,18 +23,16 @@ body {
 .display {
   flex-grow: 1;
   font-size: 75px;
-  position: relative;
 }
 
 .display__content {
-  color: #fff;
-  bottom: 5px;
-  position: absolute;
-  right: 28px;
+  color: #FFFFFF;
+  padding-top:85px;
+  padding-left:308px;
 }
 
 .keyboard {
-  border-left: 2px solid #000;
+  border-left: 2px solid #000000;
   display: flex;
   flex-wrap: wrap;
 }
@@ -48,14 +46,14 @@ body {
   border: none;
   font-family: 'Roboto', sans-serif;
   margin: 0;
-  background: #c9cacc;
+  background: #C9CACC;
   flex-basis: 25%;
   font-size: 41px;
   font-weight: 300;
   transition: opacity .6s;
   padding: 14px;
-  border-right: 1px solid #000;
-  border-bottom: 1px solid #000;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
 }
 
 .keyboard > button:active,
@@ -66,18 +64,18 @@ body {
 
 .keyboard__button_operation
 {
-  color: #fff;
-  background: #f58010;
+  color: #FFFFFF;
+  background: #F58010;
   font-weight: 200;
   font-size:  56px;
 }
 
 .keyboard__button_dark{
-  background: #bbbcbd;
+  background: #BBBCBD;
   font-size: 30px;
 }
 
-.keyboard__button__subtract{
+.keyboard__button-subtract{
   font-size:  50px;
   font-weight: 300;
   padding-top:16px;
@@ -101,14 +99,14 @@ body {
 }
 
 
-.keyboard__button__multiply{
+.keyboard__button-multiply{
   padding-top:6px;
   padding-bottom:22px;
 }
 
-.keyboard__button__decimal{
+.keyboard__button-decimal{
   font-size: 60px;
-  font-weight: 250;
+  font-weight: 300;
   line-height: 0;
   padding-bottom: 28px;
 }
