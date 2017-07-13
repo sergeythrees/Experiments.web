@@ -20,52 +20,51 @@ body {
   flex-direction: column;
 }
 
-.calc-display {
+.display {
   flex-grow: 1;
   font-size: 75px;
   position: relative;
 }
 
-.calc-display .content {
+.display__content {
   color: #fff;
   bottom: 5px;
   position: absolute;
   right: 28px;
 }
 
-.calc-buttons {
+.keyboard {
   border-left: 2px solid #000;
   display: flex;
   flex-wrap: wrap;
 }
 
-.calc-buttons > button:focus,
-.calc-buttons > button:active {
+.keyboard > button:focus,
+.keyboard > button:active {
   outline: none;
 }
 
-.calc-buttons__button {
+.keyboard__button {
   border: none;
   font-family: 'Roboto', sans-serif;
   margin: 0;
-  padding: 0;
   background: #c9cacc;
   flex-basis: 25%;
   font-size: 41px;
   font-weight: 300;
   transition: opacity .6s;
   padding: 14px;
-  border-right: 0.5px solid #000;
-  border-bottom: 0.5px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
 }
 
-.calc-buttons > button:active,
-.calc-buttons > button.is-active {
+.keyboard > button:active,
+.keyboard > button.is-active {
   opacity: .9;
   transition: opacity 0s;
 }
 
-.calc-buttons__button_operation
+.keyboard__button_operation
 {
   color: #fff;
   background: #f58010;
@@ -73,41 +72,41 @@ body {
   font-size:  56px;
 }
 
-.calc-buttons__button_dark{
+.keyboard__button_dark{
   background: #bbbcbd;
   font-size: 30px;
 }
 
-.calc-buttons__button__subtract{
+.keyboard__button__subtract{
   font-size:  50px;
   font-weight: 300;
   padding-top:16px;
   padding-bottom:16px;
 }
 
-.change-sign-content__minus {
+.change-sign-minus {
   font-size: 38px;
   line-height: 0;
   margin-left: -6px;
 }
 
-.change-sign-content__plus {
+.change-sign-plus {
   margin-right: -6px;
 }
 
-.calc-buttons__button_wide{
+.keyboard__button_wide{
   padding-left: 36px;
   text-align: left;
   flex-basis: 50%;
 }
 
 
-.calc-buttons__button__multiply{
+.keyboard__button__multiply{
   padding-top:6px;
   padding-bottom:22px;
 }
 
-.calc-buttons__button__decimal{
+.keyboard__button__decimal{
   font-size: 60px;
   font-weight: 250;
   line-height: 0;
