@@ -37,8 +37,8 @@ body {
   flex-wrap: wrap;
 }
 
-.keyboard > button:focus,
-.keyboard > button:active {
+.keyboard__button:focus,
+.keyboard__button:active {
   outline: none;
 }
 
@@ -56,14 +56,13 @@ body {
   border-bottom: 1px solid #000000;
 }
 
-.keyboard > button:active,
-.keyboard > button.is-active {
+.keyboard__button:active,
+.keyboard__button.is-active {
   opacity: .9;
   transition: opacity 0s;
 }
 
-.keyboard__button_operation
-{
+.keyboard__button_operation {
   color: #FFFFFF;
   background: #F58010;
   font-weight: 200;
@@ -92,19 +91,18 @@ body {
   margin-right: -6px;
 }
 
-.keyboard__button_wide{
+.keyboard__button_wide {
   padding-left: 36px;
   text-align: left;
   flex-basis: 50%;
 }
 
-
-.keyboard__button-multiply{
+.keyboard__button-multiply {
   padding-top:6px;
   padding-bottom:22px;
 }
 
-.keyboard__button-decimal{
+.keyboard__button-decimal {
   font-size: 60px;
   font-weight: 300;
   line-height: 0;
