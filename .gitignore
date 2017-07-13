@@ -3,8 +3,7 @@
 
 # User-specific stuff:
 /idea/
-idea/*
-# CMake
+.idea/vcs.xml
 cmake-build-debug/
 
 # Mongo Explorer plugin:
