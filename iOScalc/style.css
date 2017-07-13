@@ -44,7 +44,7 @@ body {
   outline: none;
 }
 
-.calc-buttons > button {
+.calc-buttons__button {
   border: none;
   font-family: 'Roboto', sans-serif;
   margin: 0;
@@ -65,7 +65,7 @@ body {
   transition: opacity 0s;
 }
 
-.calc-buttons .calc-buttons-operation
+.calc-buttons__button_operation
 {
   color: #fff;
   background: #f58010;
@@ -73,43 +73,41 @@ body {
   font-size:  56px;
 }
 
-#calc-buttons__clear,
-#calc-buttons__change-sign,
-#calc-buttons__percent{
+.calc-buttons__button_dark{
   background: #bbbcbd;
   font-size: 30px;
 }
 
-#calc-buttons__subtract{
+.calc-buttons__button__subtract{
   font-size:  50px;
   font-weight: 300;
   padding-top:16px;
   padding-bottom:16px;
 }
 
-#change-sign__minus {
+.change-sign-content__minus {
   font-size: 38px;
   line-height: 0;
   margin-left: -6px;
 }
 
-#change-sign__plus {
+.change-sign-content__plus {
   margin-right: -6px;
 }
 
-#calc-buttons__zero{
+.calc-buttons__button_wide{
   padding-left: 36px;
   text-align: left;
   flex-basis: 50%;
 }
 
 
-#calc-buttons__multiply{
+.calc-buttons__button__multiply{
   padding-top:6px;
   padding-bottom:22px;
 }
 
-#calc-buttons__decimal{
+.calc-buttons__button__decimal{
   font-size: 60px;
   font-weight: 250;
   line-height: 0;
