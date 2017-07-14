@@ -23,12 +23,14 @@ body {
 .display {
   flex-grow: 1;
   font-size: 75px;
+  text-align: right;
 }
 
 .display__content {
   color: #FFFFFF;
   padding-top:85px;
-  padding-left:308px;
+  padding-right: 25px;
+
 }
 
 .keyboard {
