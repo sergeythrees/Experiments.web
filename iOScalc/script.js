@@ -5,7 +5,8 @@ var
   lastSavedDigit = 0,
   secondDigit = null,
   currentOperation = null,
-  clearDisplayFlag = false;
+  clearDisplayFlag = false,
+  wasDecimalAdded = false;
 
 //main
 for (var i=0; i<=9; ++i) {
@@ -20,7 +21,7 @@ for (var i=0; i<=9; ++i) {
   ["-", function(){changeCurrentOperation(substract)}],
   ["+", function(){changeCurrentOperation(sum)}],
   ["=", currentOperation],
-  [",", changeSign],
+  [",", addDecimal],
  ]
 .forEach(function(item) {
   var
@@ -47,6 +48,12 @@ function makeDigitButtonClickHandler(buttonId) {
     displayPressedDigit(button.firstChild.data)};
 }
 
+function addDecimal() {
+  if (!wasDecimalAdded)
+    display.firstChild.data = display.firstChild.data + ".";
+  wasDecimalAdded = true;
+}
+
 function displayPressedDigit(digit) {
   if (display.firstChild.data == 0) {
     lastSavedDigit = display.firstChild.data;
@@ -57,6 +64,7 @@ function displayPressedDigit(digit) {
       lastSavedDigit = display.firstChild.data;
       display.firstChild.data = digit;
       clearDisplayFlag = true;
+      wasDecimalAdded = false;
     }
     else {
         display.firstChild.data = display.firstChild.data + digit;
@@ -72,6 +80,7 @@ function displayOperationResult(digit) {
 function clear() {
   lastSavedDigit = 0;
   secondDigit = null;
+  wasDecimalAdded = false;
   display.firstChild.data = 0;
   changeCurrentOperation(null);
 }
@@ -81,17 +90,17 @@ function changeSign() {
 }
 
 function percent() {
-  display.firstChild.data = +lastSavedDigit / 100 * +display.firstChild.data;
+  display.firstChild.data = +(+lastSavedDigit / 100 * +display.firstChild.data).toFixed(4);
   lastSavedDigit = display.firstChild.data;
 }
 
 function divide() {
-  display.firstChild.data = +lastSavedDigit / +secondDigit;
+  display.firstChild.data = +(+lastSavedDigit / +secondDigit).toFixed(6);
   lastSavedDigit = display.firstChild.data;
 }
 
 function multiple() {
-  display.firstChild.data = lastSavedDigit * secondDigit;
+  display.firstChild.data = +(lastSavedDigit * secondDigit).toFixed(4);
   lastSavedDigit = display.firstChild.data;
 }
 
