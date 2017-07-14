@@ -1,7 +1,42 @@
 //global
+
+class Display {
+  constructor (displayId) {
+    this._display = document.getElementById(displayId);
+    this.isClear = true;
+  }
+  setContent(content) {
+    this._display.firstChild.data = content;
+  }
+  getContent() {
+    return this._display.firstChild.data;
+  }
+}
+
+class Calc {
+  constructor (display) {
+    this._display = display;
+    this._currentOperation = null;
+    this._isWaitForEnter = true;
+    this._firstNumber = 0;
+    this._secondNumber = null;
+  }
+  setOperation(operation) {
+    this._currentOperation = operation;
+    this._secondNumber = null;
+    this._firstNumber = this._display.getContent();
+    this.isWaitForEnter = true;
+    // document.getElementById("=").onclick = function(){
+    //   if (secondDigit == null)
+    //     secondDigit = display.getContent();
+    //   currentOperation();};
+  }
+
+}
+
 var
   DISPLAY_ID = 'displayId',
-  display = document.getElementById(DISPLAY_ID),
+  display = new Display(DISPLAY_ID),
   lastSavedDigit = 0,
   secondDigit = null,
   currentOperation = null,
@@ -29,15 +64,17 @@ for (var i=0; i<=9; ++i) {
     button.onclick = item[1];
 });
 
+
+
 //functions
 function changeCurrentOperation(operation) {
   currentOperation = operation;
   secondDigit = null;
-  lastSavedDigit = display.firstChild.data;
+  lastSavedDigit = display.getContent();
   clearDisplayFlag = false;
   document.getElementById("=").onclick = function(){
     if (secondDigit == null)
-      secondDigit = display.firstChild.data;
+      secondDigit = display.getContent();
     currentOperation();};
 }
 
@@ -50,30 +87,30 @@ function makeDigitButtonClickHandler(buttonId) {
 
 function addDecimal() {
   if (!wasDecimalAdded)
-    display.firstChild.data = display.firstChild.data + ".";
+    display.setContent(display.getContent() + ".");
   wasDecimalAdded = true;
 }
 
 function displayPressedDigit(digit) {
-  if (display.firstChild.data == 0) {
-    lastSavedDigit = display.firstChild.data;
-    display.firstChild.data = digit;
+  if (display.getContent() == 0) {
+    lastSavedDigit = display.getContent();
+    display.setContent(digit);
   }
   else {
     if (currentOperation != null && clearDisplayFlag == false) {
-      lastSavedDigit = display.firstChild.data;
-      display.firstChild.data = digit;
+      lastSavedDigit = display.getContent();
+      display.setContent(digit);
       clearDisplayFlag = true;
       wasDecimalAdded = false;
     }
     else {
-        display.firstChild.data = display.firstChild.data + digit;
+        display.setContent(display.getContent() + digit);
     }
   }
 }
 
 function displayOperationResult(digit) {
-  display.firstChild.data = digit;
+  display.setContent(digit);
   lastSavedDigit = digit;
 }
 
@@ -81,35 +118,35 @@ function clear() {
   lastSavedDigit = 0;
   secondDigit = null;
   wasDecimalAdded = false;
-  display.firstChild.data = 0;
+  display.setContent(0);
   changeCurrentOperation(null);
 }
 
 function changeSign() {
-  display.firstChild.data = -display.firstChild.data;
+  display.setContent(-display.getContent());
 }
 
 function percent() {
-  display.firstChild.data = +(+lastSavedDigit / 100 * +display.firstChild.data).toFixed(4);
-  lastSavedDigit = display.firstChild.data;
+  display.setContent(+(+lastSavedDigit / 100 * +display.getContent()).toFixed(4));
+  lastSavedDigit = display.getContent();
 }
 
 function divide() {
-  display.firstChild.data = +(+lastSavedDigit / +secondDigit).toFixed(6);
-  lastSavedDigit = display.firstChild.data;
+  display.setContent(+(+lastSavedDigit / +secondDigit).toFixed(6));
+  lastSavedDigit = display.getContent();
 }
 
 function multiple() {
-  display.firstChild.data = +(lastSavedDigit * secondDigit).toFixed(4);
-  lastSavedDigit = display.firstChild.data;
+  display.setContent(+(lastSavedDigit * secondDigit).toFixed(4));
+  lastSavedDigit = display.getContent();
 }
 
 function substract() {
-  display.firstChild.data = lastSavedDigit - secondDigit;
-  lastSavedDigit = display.firstChild.data;
+  display.setContent(lastSavedDigit - secondDigit);
+  lastSavedDigit = display.getContent();
 }
 
 function sum() {
-  display.firstChild.data = +lastSavedDigit + +secondDigit;
-  lastSavedDigit = display.firstChild.data;
+  display.setContent(+lastSavedDigit + +secondDigit);
+  lastSavedDigit = display.getContent();
 }
