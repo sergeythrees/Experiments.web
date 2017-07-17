@@ -1,6 +1,8 @@
 class Display {
   constructor (displayId) {
+    /**@private*/
     this._display = document.getElementById(displayId);
+    /**@private {boolean}*/
     this.isClear = true;
   }
   setContent(content) {
@@ -13,17 +15,23 @@ class Display {
 
 class Calc {
   constructor (display) {
-    /*@const*/this._display = display;
+    /**@private*/
+    this._display = display;
+    /**@private {function() | null}*/
     this._currentOperation = null;
+    /**@private {boolean}*/
     this._isWaitForEnter = true;
+    /**@private {boolean}*/
     this._wasDecimalAdded = false;
+    /**@private {number}*/
     this._firstNumber = 0;
-    this._secondNumber = +null;
+    /**@private {number | null}*/
+    this._secondNumber = null;
     this._display.setContent(0);
   }
   setOperation(operation) {
     this._currentOperation = operation;
-    this._secondNumber = +null;
+    this._secondNumber = null;
     this._firstNumber = this._display.getContent();
     this._isWaitForEnter = true;
   }
@@ -45,14 +53,14 @@ class Calc {
     }
   }
   calculate() {
-    if(this._secondNumber == +null)
-      this._secondNumber = +this._display.getContent();
+    if(this._secondNumber == null) {
+        this._secondNumber = this._display.getContent();
+    }
     this._currentOperation();
   }
 
   clear() {
     this._firstNumber = 0;
-    this._secondNumber = +null;
     this._wasDecimalAdded = false;
     this._display.setContent(0);
     this.setOperation(null);
