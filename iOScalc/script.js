@@ -1,10 +1,12 @@
 function main() {
-  var
+  const
+    /**@type {string}*/
     DISPLAY_ID = 'displayId',
     display = new Display(DISPLAY_ID),
+    /**@type {Calc}*/
     calc = new Calc(display);
 
-    for (var i=0; i<=9; ++i) {
+    for (let i=0; i<=9; ++i) {
       makeDigitButtonClickHandler(i, calc);
     }
 
@@ -20,17 +22,17 @@ function main() {
       [",",   function (){calc.addDecimal()}],
      ]
     .forEach(function(item) {
-      var
+      let
         button = document.getElementById(item[0]);
         button.onclick = item[1];
     });
 }
 
-
-
 function makeDigitButtonClickHandler(buttonId, calc) {
-  var
+  let
     button = document.getElementById(buttonId);
   button.onclick =  function (){
     calc.displayPressedDigit(button.firstChild.data)};
 }
+
+main();

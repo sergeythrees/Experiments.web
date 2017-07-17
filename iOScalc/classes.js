@@ -13,17 +13,17 @@ class Display {
 
 class Calc {
   constructor (display) {
-    this._display = display;
+    /*@const*/this._display = display;
     this._currentOperation = null;
     this._isWaitForEnter = true;
     this._wasDecimalAdded = false;
     this._firstNumber = 0;
-    this._secondNumber = null;
+    this._secondNumber = +null;
     this._display.setContent(0);
   }
   setOperation(operation) {
     this._currentOperation = operation;
-    this._secondNumber = null;
+    this._secondNumber = +null;
     this._firstNumber = this._display.getContent();
     this._isWaitForEnter = true;
   }
@@ -45,14 +45,14 @@ class Calc {
     }
   }
   calculate() {
-    if(this._secondNumber == null)
-      this._secondNumber = this._display.getContent();
+    if(this._secondNumber == +null)
+      this._secondNumber = +this._display.getContent();
     this._currentOperation();
   }
 
   clear() {
     this._firstNumber = 0;
-    this._secondNumber = null;
+    this._secondNumber = +null;
     this._wasDecimalAdded = false;
     this._display.setContent(0);
     this.setOperation(null);

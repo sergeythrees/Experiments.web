@@ -1,0 +1,1 @@
+java -jar compiler.jar --compilation_level ADVANCED_OPTIMIZATIONS --js classes.js --js script.js --js_output_file script_compiled.js
