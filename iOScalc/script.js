@@ -18,45 +18,99 @@ class Calc {
     this._display = display;
     this._currentOperation = null;
     this._isWaitForEnter = true;
+    this._wasDecimalAdded = false;
     this._firstNumber = 0;
     this._secondNumber = null;
+    display.setContent(0);
   }
   setOperation(operation) {
     this._currentOperation = operation;
     this._secondNumber = null;
     this._firstNumber = this._display.getContent();
-    this.isWaitForEnter = true;
-    // document.getElementById("=").onclick = function(){
-    //   if (secondDigit == null)
-    //     secondDigit = display.getContent();
-    //   currentOperation();};
+    this._isWaitForEnter = true;
   }
+  addDecimal() {
+    if (!this._wasDecimalAdded || this._isWaitForEnter) {
+      display.setContent(display.getContent() + ".");
+      this._wasDecimalAdded = true;
+      this._isWaitForEnter = false;
+    }
+  }
+  displayPressedDigit(digit) {
+    if (this._isWaitForEnter) {
+      display.setContent(digit);
+      this._isWaitForEnter = false;
+      this._wasDecimalAdded = false;
+    }
+    else {
+      display.setContent(display.getContent() + digit);
+    }
+  }
+  calculate() {
+    if(this._secondNumber == null)
+      this._secondNumber = display.getContent();
+    this._currentOperation();
+  }
+
+  clear() {
+    this._firstNumber = 0;
+    this._secondNumber = null;
+    this._wasDecimalAdded = false;
+    display.setContent(0);
+    this.setOperation(null);
+  }
+
+  changeSign() {
+    display.setContent(-display.getContent());
+  }
+  percent() {
+   display.setContent(+(+this._firstNumber / 100 * +display.getContent()).toFixed(4));
+   this._firstNumber = display.getContent();
+  }
+
+  divide() {
+   display.setContent(+(+this._firstNumber / +this._secondNumber).toFixed(6));
+   this._firstNumber = display.getContent();
+  }
+
+  multiple() {
+   display.setContent(+(this._firstNumber * this._secondNumber).toFixed(4));
+   this._firstNumber = display.getContent();
+  }
+
+  substract() {
+   display.setContent(this._firstNumber - this._secondNumber);
+   this._firstNumber = display.getContent();
+  }
+
+  sum() {
+   display.setContent(+this._firstNumber + +this._secondNumber);
+   this._firstNumber = display.getContent();
+  }
+
 
 }
 
 var
   DISPLAY_ID = 'displayId',
   display = new Display(DISPLAY_ID),
-  lastSavedDigit = 0,
-  secondDigit = null,
-  currentOperation = null,
-  clearDisplayFlag = false,
-  wasDecimalAdded = false;
+  calc = new Calc(display);
 
 //main
 for (var i=0; i<=9; ++i) {
   makeDigitButtonClickHandler(i);
 }
 
-[ ["AC", clear],
-  ["+/-", changeSign],
-  ["%", percent],
-  ["÷", function(){changeCurrentOperation(divide)}],
-  ["*", function(){changeCurrentOperation(multiple)}],
-  ["-", function(){changeCurrentOperation(substract)}],
-  ["+", function(){changeCurrentOperation(sum)}],
-  ["=", currentOperation],
-  [",", addDecimal],
+[
+  ["AC",  function(){calc.clear()}],
+  ["+/-", function(){calc.changeSign()}],
+  ["%",   function(){calc.percent()}],
+  ["÷",   function(){calc.setOperation(calc.divide)}],
+  ["*",   function(){calc.setOperation(calc.multiple)}],
+  ["-",   function(){calc.setOperation(calc.substract)}],
+  ["+",   function(){calc.setOperation(calc.sum)}],
+  ["=",   function(){calc.calculate()}],
+  [",",   function (){calc.addDecimal()}],
  ]
 .forEach(function(item) {
   var
@@ -64,89 +118,9 @@ for (var i=0; i<=9; ++i) {
     button.onclick = item[1];
 });
 
-
-
-//functions
-function changeCurrentOperation(operation) {
-  currentOperation = operation;
-  secondDigit = null;
-  lastSavedDigit = display.getContent();
-  clearDisplayFlag = false;
-  document.getElementById("=").onclick = function(){
-    if (secondDigit == null)
-      secondDigit = display.getContent();
-    currentOperation();};
-}
-
 function makeDigitButtonClickHandler(buttonId) {
   var
     button = document.getElementById(buttonId);
   button.onclick =  function (){
-    displayPressedDigit(button.firstChild.data)};
-}
-
-function addDecimal() {
-  if (!wasDecimalAdded)
-    display.setContent(display.getContent() + ".");
-  wasDecimalAdded = true;
-}
-
-function displayPressedDigit(digit) {
-  if (display.getContent() == 0) {
-    lastSavedDigit = display.getContent();
-    display.setContent(digit);
-  }
-  else {
-    if (currentOperation != null && clearDisplayFlag == false) {
-      lastSavedDigit = display.getContent();
-      display.setContent(digit);
-      clearDisplayFlag = true;
-      wasDecimalAdded = false;
-    }
-    else {
-        display.setContent(display.getContent() + digit);
-    }
-  }
-}
-
-function displayOperationResult(digit) {
-  display.setContent(digit);
-  lastSavedDigit = digit;
-}
-
-function clear() {
-  lastSavedDigit = 0;
-  secondDigit = null;
-  wasDecimalAdded = false;
-  display.setContent(0);
-  changeCurrentOperation(null);
-}
-
-function changeSign() {
-  display.setContent(-display.getContent());
-}
-
-function percent() {
-  display.setContent(+(+lastSavedDigit / 100 * +display.getContent()).toFixed(4));
-  lastSavedDigit = display.getContent();
-}
-
-function divide() {
-  display.setContent(+(+lastSavedDigit / +secondDigit).toFixed(6));
-  lastSavedDigit = display.getContent();
-}
-
-function multiple() {
-  display.setContent(+(lastSavedDigit * secondDigit).toFixed(4));
-  lastSavedDigit = display.getContent();
-}
-
-function substract() {
-  display.setContent(lastSavedDigit - secondDigit);
-  lastSavedDigit = display.getContent();
-}
-
-function sum() {
-  display.setContent(+lastSavedDigit + +secondDigit);
-  lastSavedDigit = display.getContent();
+    calc.displayPressedDigit(button.firstChild.data)};
 }
