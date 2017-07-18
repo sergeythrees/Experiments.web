@@ -1,1 +1,0 @@
-java -jar D:/reps/libs/compiler.jar --compilation_level ADVANCED_OPTIMIZATIONS --js classes.js --js main.js --js_output_file script_compiled.js
