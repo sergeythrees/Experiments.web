@@ -2,33 +2,32 @@ function main() {
   
   /**@type {string}*/
   const DISPLAY_ID = 'displayId';
-
-  /**@type {Display}*/
-  const display = new Display(DISPLAY_ID);
-
-  /**@type {Calc}*/
-  const calc = new Calc(display);
+  /**@type {View}*/
+  const view = new View(document.getElementById(DISPLAY_ID));
+  /**@type {Model}*/
+  const model = new Model();
+  /**@type {Controller}*/
+  const controller = new Controller(view, model);
 
   /**@type {Array<string, Function>}*/
   let handlersMap =
-      [ ["AC",  () => {calc.clear();}],
-        ["+/-", () => {calc.changeSign();}],
-        ["%",   () => {calc.percent();}],
-        ["÷",   () => {calc.setOperation(calc.divide);}],
-        ["*",   () => {calc.setOperation(calc.multiple);}],
-        ["-",   () => {calc.setOperation(calc.subtract);}],
-        ["+",   () => {calc.setOperation(calc.sum);}],
-        ["=",   () => {calc.calculate();}],
-        [",",   () => {calc.addDecimal();}] ];
+      [ ["AC",  () => view.onClearButtonClicked().notify()],
+        ["+/-", () => view.onChangeSignButtonClicked().notify()],
+        ["%",   () => view.onPercentButtonClicked().notify()],
+        ["÷",   () => view.onDivideButtonClicked().notify()],
+        ["*",   () => view.onMultipleButtonClicked().notify()],
+        ["-",   () => view.onSubtractButtonClicked().notify()],
+        ["+",   () => view.onAddButtonClicked().notify()],
+        ["=",   () => view.onCalculateButtonClicked().notify()],
+        [",",   () => view.onDecimalButtonClicked().notify() ] ];
 
   for (let id=0; id<=9; ++id) {
-    addListenerById(String(id),
-      () => {calc.displayPressedDigit(String(id));});
+    addListenerById(String(id), () =>
+        view.onDigitButtonClicked().notify(id) );
   };
 
-  handlersMap.forEach(function(item) {
-    addListenerById(item[0], item[1]);
-  });
+  handlersMap.forEach( (item)=>
+    addListenerById(item[0], item[1]) );
 
   /**@param {string} buttonId*/
   /**@param {Function} func*/
@@ -37,6 +36,7 @@ function main() {
         .addEventListener("click", func);
   }
 
+  controller;
 }
 
 main();
