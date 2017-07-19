@@ -1,4 +1,4 @@
-class cCommand {
+class Command {
 
   /**@param {Function} executeFunction*/
   /**@param {Function} unexecuteFunction*/
@@ -20,10 +20,10 @@ class cCommand {
   }
 }
 
-class cHistory {
+class History {
   constructor() {
 
-    /**@private {Array<cCommand>}*/
+    /**@private {Array<Command>}*/
     this._commands = [];
 
     /**@private {?number}*/
@@ -44,7 +44,7 @@ class cHistory {
     }
   }
 
-  /**@param {cCommand} command*/
+  /**@param {Command} command*/
   add(command) {
     if (this._lastCommandIndex < (this._commands.length - 1)) {
       this._lastCommandIndex++;
@@ -59,7 +59,7 @@ class cHistory {
     if (this._commands.length > 10) {
       this._commands.pop();
     }
-    
+
     command.execute();
   }
 }

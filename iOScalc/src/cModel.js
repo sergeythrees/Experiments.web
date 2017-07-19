@@ -1,11 +1,17 @@
 
 class Model {
-  constructor() {
+
+  /**@param {History} history*/
+  constructor(history) {
+
+    /**@private {History}*/
+    this._history = history;
+
     /**@private {?Function}*/
     this._currentOperation = null;
 
-    /**@private {cEvent}*/
-    this._changedNumber = new cEvent(this);
+    /**@private {Event}*/
+    this._changedNumber = new Event(this);
 
     /**@private {boolean}*/
     this._isWaitForEnter = true;
@@ -20,7 +26,7 @@ class Model {
     this._secondNumber = null;
   }
 
-  /**@return {cEvent}*/
+  /**@return {Event}*/
   onNumberChanged() {
     return this._changedNumber;
   }

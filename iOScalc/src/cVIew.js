@@ -6,83 +6,83 @@ class View {
     /**@private {Element}*/
     this._display = display;
 
-    /**@private {cEvent}*/
-    this._digitButtonClicked = new cEvent(this);
+    /**@private {Event}*/
+    this._digitButtonClicked = new Event(this);
 
-    /**@private {cEvent}*/
-    this._clearButtonClicked = new cEvent(this);
+    /**@private {Event}*/
+    this._clearButtonClicked = new Event(this);
 
-    /**@private {cEvent}*/
-    this._changeSignButtonClicked = new cEvent(this);
+    /**@private {Event}*/
+    this._changeSignButtonClicked = new Event(this);
 
-    /**@private {cEvent}*/
-    this._percentButtonClicked = new cEvent(this);
+    /**@private {Event}*/
+    this._percentButtonClicked = new Event(this);
 
-    /**@private {cEvent}*/
-    this._divideButtonClicked = new cEvent(this);
+    /**@private {Event}*/
+    this._divideButtonClicked = new Event(this);
 
-    /**@private {cEvent}*/
-    this._multipleButtonClicked = new cEvent(this);
+    /**@private {Event}*/
+    this._multipleButtonClicked = new Event(this);
 
-    /**@private {cEvent}*/
-    this._subtractButtonClicked = new cEvent(this);
+    /**@private {Event}*/
+    this._subtractButtonClicked = new Event(this);
 
-    /**@private {cEvent}*/
-    this._addButtonClicked = new cEvent(this);
+    /**@private {Event}*/
+    this._addButtonClicked = new Event(this);
 
-    /**@private {cEvent}*/
-    this._calculateButtonClicked = new cEvent(this);
+    /**@private {Event}*/
+    this._calculateButtonClicked = new Event(this);
 
-    /**@private {cEvent}*/
-    this._decimalButtonClicked = new cEvent(this);
+    /**@private {Event}*/
+    this._decimalButtonClicked = new Event(this);
   }
 
-  /**@return {cEvent}*/
+  /**@return {Event}*/
   onDigitButtonClicked() {
     return this._digitButtonClicked;
   }
 
-  /**@return {cEvent}*/
+  /**@return {Event}*/
   onClearButtonClicked() {
     return this._clearButtonClicked;
   }
 
-  /**@return {cEvent}*/
+  /**@return {Event}*/
   onChangeSignButtonClicked() {
     return this._changeSignButtonClicked;
   }
 
-  /**@return {cEvent}*/
+  /**@return {Event}*/
   onPercentButtonClicked() {
     return this._percentButtonClicked;
   }
 
-  /**@return {cEvent}*/
+  /**@return {Event}*/
   onDivideButtonClicked() {
     return this._divideButtonClicked;
   }
 
-  /**@return {cEvent}*/
+  /**@return {Event}*/
   onMultipleButtonClicked() {
     return this._multipleButtonClicked;
   }
 
-  /**@return {cEvent}*/
+  /**@return {Event}*/
   onSubtractButtonClicked() {
     return this._subtractButtonClicked;
   }
 
-  /**@return {cEvent}*/
+  /**@return {Event}*/
   onAddButtonClicked() {
     return this._addButtonClicked;
   }
 
-  /**@return {cEvent}*/
+  /**@return {Event}*/
   onCalculateButtonClicked() {
     return this._calculateButtonClicked;
   }
 
-  /**@return {cEvent}*/
+  /**@return {Event}*/
   onDecimalButtonClicked() {
     return this._decimalButtonClicked;
   }

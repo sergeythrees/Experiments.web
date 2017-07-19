@@ -36,14 +36,12 @@ function main() {
         .addEventListener("click", func);
   }
 
-  function onKeyDown(e) {
-    var evtobj = window.event? event : e
+  function onKeyDown(evtobj) {
     if (evtobj.keyCode == 90 && evtobj.ctrlKey && !evtobj.shiftKey) alert("Ctrl+z");
     if (evtobj.keyCode == 90 && evtobj.ctrlKey && evtobj.shiftKey) alert("Ctrl+Shift+z");
   }
 
   document.addEventListener("keydown", onKeyDown);
- controller;
 }
 
 main();
