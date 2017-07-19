@@ -9,38 +9,44 @@ class Controller {
 
     /**@private {Model}*/
     this._model = model;
+    
+    /**@const {View}*/
+    const _v = this._view;
 
-    this._view.onDigitButtonClicked().attach( (digit)=>
-        this._model.addDigit(digit) );
+    /**@const {Model}*/
+    const _m = this._model;
 
-    this._view.onAddButtonClicked().attach( ()=>
-        this._model.setOperation(this._model.sum));
+    _v.onDigitButtonClicked().attach( (digit)=>
+        _m.addDigit(digit) );
 
-    this._view.onDivideButtonClicked().attach( ()=>
-        this._model.setOperation(this._model.divide));
+    _v.onAddButtonClicked().attach( ()=>
+        _m.setOperation(_m.sum));
 
-    this._view.onMultipleButtonClicked().attach( ()=>
-        this._model.setOperation(this._model.multiple));
+    _v.onDivideButtonClicked().attach( ()=>
+        _m.setOperation(_m.divide));
 
-    this._view.onSubtractButtonClicked().attach( ()=>
-        this._model.setOperation(this._model.subtract));
+    _v.onMultipleButtonClicked().attach( ()=>
+        _m.setOperation(_m.multiple));
 
-    this._view.onCalculateButtonClicked().attach( ()=>
-        this._model.calculate());
+    _v.onSubtractButtonClicked().attach( ()=>
+        _m.setOperation(_m.subtract));
 
-    this._view.onChangeSignButtonClicked().attach( ()=>
-        this._model.changeSign());
+    _v.onCalculateButtonClicked().attach( ()=>
+        _m.calculate());
 
-    this._view.onDecimalButtonClicked().attach( ()=>
-        this._model.addDecimal());
+    _v.onChangeSignButtonClicked().attach( ()=>
+        _m.changeSign());
 
-    this._view.onPercentButtonClicked().attach( ()=>
-        this._model.percent());
+    _v.onDecimalButtonClicked().attach( ()=>
+        _m.addDecimal());
 
-    this._view.onClearButtonClicked().attach( ()=>
-        this._model.clear());
+    _v.onPercentButtonClicked().attach( ()=>
+        _m.percent());
 
-    this._model.onNumberChanged().attach( (number)=>
-        this._view.updateDisplay(String(number)));
+    _v.onClearButtonClicked().attach( ()=>
+        _m.clear());
+
+    _m.onNumberChanged().attach( (number)=>
+        _v.updateDisplay(String(number)));
   }
 }

@@ -35,8 +35,7 @@ function main() {
     document.getElementById(buttonId)
         .addEventListener("click", func);
   }
-
-  controller;
+ controller;
 }
 
 main();

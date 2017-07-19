@@ -34,7 +34,7 @@ body {
 }
 
 .keyboard {
-  border-left: 2px solid #000000;
+  border-left: 1px solid #000000;
   display: flex;
   flex-wrap: wrap;
 }

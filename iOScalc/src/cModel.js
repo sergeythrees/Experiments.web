@@ -14,7 +14,7 @@ class Model {
     this._wasDecimalAdded = false;
 
     /**@private {?string}*/
-    this._firstNumber = 0;
+    this._firstNumber = String(0);
 
     /**@private {?string}*/
     this._secondNumber = null;
@@ -25,16 +25,16 @@ class Model {
     return this._changedNumber;
   }
 
-  /**@return {string}*/
+  /**@return {?string}*/
   getCurrentNumber() {
-    return (this._secondNumber || this._firstNumber);
+    return ((this._secondNumber == null) ? this._firstNumber : this._secondNumber);
   }
 
   /**@param {string} newValue*/
   changeCurrentNumber(newValue) {
     !this._currentOperation ?
-        this._firstNumber = String(newValue) :
-        this._secondNumber  = String(newValue);
+        this._firstNumber = newValue :
+        this._secondNumber  = newValue;
   }
 
   clear() {
@@ -61,7 +61,7 @@ class Model {
     }
   }
 
-  /**@param {number} digit*/
+  /**@param {string} digit*/
   addDigit(digit) {
     if (this._isWaitForEnter) {
       this.changeCurrentNumber(digit);
