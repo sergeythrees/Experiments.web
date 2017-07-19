@@ -7,7 +7,7 @@ function main() {
   /**@type {Model}*/
   const model = new Model();
   /**@type {Controller}*/
-  const controller = new Controller(view, model);
+  const controller = new Controller(view, model, new (History));
 
   /**@type {Array<string, Function>}*/
   let handlersMap =
@@ -37,8 +37,12 @@ function main() {
   }
 
   function onKeyDown(evtobj) {
-    if (evtobj.keyCode == 90 && evtobj.ctrlKey && !evtobj.shiftKey) alert("Ctrl+z");
-    if (evtobj.keyCode == 90 && evtobj.ctrlKey && evtobj.shiftKey) alert("Ctrl+Shift+z");
+    if (evtobj.keyCode == 90 && evtobj.ctrlKey && !evtobj.shiftKey) {
+      controller.undo();
+    }
+    if (evtobj.keyCode == 90 && evtobj.ctrlKey && evtobj.shiftKey) {
+      controller.redo();
+    }
   }
 
   document.addEventListener("keydown", onKeyDown);

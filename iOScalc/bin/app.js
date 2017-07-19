@@ -2,16 +2,16 @@ const app = require('electron').app;
 const BrowserWindow = require('electron').BrowserWindow;
 const path = require('path');
 const url = require('url');
+const electron = require('electron');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 
 function createWindow () {
-  // Create the browser window.
   win = new BrowserWindow({
-    width: 415,
-    height: 697,
+    width: 400,
+    height: 700,
     transparent: true,
     frame: false,
     titleBarStyle: 'hidden'

@@ -12,11 +12,11 @@ class Command {
   }
 
   execute() {
-    executeFunction();
+    this._executeFunction();
   }
 
   unExecute() {
-    unexecuteFunction();
+    this._unexecuteFunction();
   }
 }
 
@@ -26,30 +26,30 @@ class History {
     /**@private {Array<Command>}*/
     this._commands = [];
 
-    /**@private {?number}*/
-    this._lastCommandIndex = null;
+    /**@private {number}*/
+    this._lastCommandIndex = 0;
   }
 
   undo() {
-    if (this._lastCommandIndex != null) {
-      this._commands[this._lastCommandIndex].unExecute();
+    if (this._lastCommandIndex != 0) {
+      this._commands[this._lastCommandIndex - 1].unExecute();
       this._lastCommandIndex--;
     }
   }
 
   redo() {
-    if (this._lastCommandIndex < (this._commands.length - 1)) {
-      this._commands[this._lastCommandIndex].execute();
+    if (this._lastCommandIndex < (this._commands.length)) {
       this._lastCommandIndex++;
+      this._commands[this._lastCommandIndex - 1].execute();
     }
   }
 
   /**@param {Command} command*/
   add(command) {
-    if (this._lastCommandIndex < (this._commands.length - 1)) {
+    if (this._lastCommandIndex < (this._commands.length)) {
       this._lastCommandIndex++;
-      this._commands.length = this._lastCommandIndex + 1;
-      this._commands[this._lastCommandIndex] = command;
+      this._commands.length = this._lastCommandIndex;
+      this._commands[this._lastCommandIndex - 1] = command;
     }
     else {
       this._commands.push(command);
@@ -59,7 +59,15 @@ class History {
     if (this._commands.length > 10) {
       this._commands.pop();
     }
+  }
 
-    command.execute();
+  /**@return {Command}*/
+  getLastCommand() {
+    return this._commands[this._lastCommandIndex - 1];
+  }
+
+  clear() {
+    this._commands = [];
+    this._lastCommandIndex = 0;
   }
 }

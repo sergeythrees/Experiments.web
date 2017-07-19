@@ -1,11 +1,6 @@
-
 class Model {
 
-  /**@param {History} history*/
-  constructor(history) {
-
-    /**@private {History}*/
-    this._history = history;
+  constructor() {
 
     /**@private {?Function}*/
     this._currentOperation = null;
@@ -20,42 +15,67 @@ class Model {
     this._wasDecimalAdded = false;
 
     /**@private {?string}*/
-    this._firstNumber = String(0);
+    this._currentValue = String(0);
 
     /**@private {?string}*/
-    this._secondNumber = null;
+    this._operandValue = null;
+  }
+
+  /**@return {number}*/
+  getCurrentValue() {
+    return +this._currentValue;
+  }
+
+  /**@param {number} value*/
+  setCurrentValue(value) {
+    this._currentValue = String(value);
+    this._changedNumber.notify(this.getCurrentValue());
+  }
+
+  /**@return {number}*/
+  getOperandValue() {
+    return this._operandValue ? +this._operandValue : +this._currentValue;
+  }
+
+  /**@param {Function} operation*/
+  setOperation(operation) {
+    this._currentOperation = operation;
+    this._operandValue = null;
+    this._isWaitForEnter = true;
+  }
+
+  addDigit(digit) {
+    if (this._isWaitForEnter) {
+      this.changeCurrentNumber(digit);
+      this._isWaitForEnter = false;
+      this._wasDecimalAdded = false;
+    }
+    else {
+      this.changeCurrentNumber(String(this.getCurrentNumber()) + String(digit));
+    }
+    this._changedNumber.notify(this.getCurrentNumber());
+  }
+
+  /**@return {number}*/
+  getCurrentNumber() {
+    return ((this._operandValue == null) ? this._currentValue : this._operandValue);
+  }
+
+  /**@param {string | number} newValue*/
+  changeCurrentNumber(newValue) {
+    !this._currentOperation ?
+        this._currentValue = String(newValue) :
+        this._operandValue  = String(newValue);
+  }
+
+  /**@return {Function}*/
+  getOperation() {
+    return this._currentOperation;
   }
 
   /**@return {Event}*/
   onNumberChanged() {
     return this._changedNumber;
-  }
-
-  /**@return {?string}*/
-  getCurrentNumber() {
-    return ((this._secondNumber == null) ? this._firstNumber : this._secondNumber);
-  }
-
-  /**@param {string} newValue*/
-  changeCurrentNumber(newValue) {
-    !this._currentOperation ?
-        this._firstNumber = newValue :
-        this._secondNumber  = newValue;
-  }
-
-  clear() {
-    this._firstNumber = "0";
-    this._secondNumber = null;
-    this._wasDecimalAdded = false;
-    this._isWaitForEnter = true;
-    this.setOperation(null);
-    this._changedNumber.notify(this.getCurrentNumber());
-  }
-
-  setOperation(operation) {
-    this._currentOperation = operation;
-    this._secondNumber = null;
-    this._isWaitForEnter = true;
   }
 
   addDecimal() {
@@ -67,66 +87,49 @@ class Model {
     }
   }
 
-  /**@param {string} digit*/
-  addDigit(digit) {
-    if (this._isWaitForEnter) {
-      this.changeCurrentNumber(digit);
-      this._isWaitForEnter = false;
-      this._wasDecimalAdded = false;
-    }
-    else {
-      this.changeCurrentNumber(this.getCurrentNumber() + digit);
-    }
-    this._changedNumber.notify(this.getCurrentNumber());
-  }
-
-  calculate() {
-    this._firstNumber = this._currentOperation(this._firstNumber, this._secondNumber);
+  clear() {
+    this._operandValue = null;
+    this._currentValue = String(0);
+    this._wasDecimalAdded = false;
     this._isWaitForEnter = true;
-    this._changedNumber.notify(Math.round(this._firstNumber * 1000000) / 1000000);
+    this.setOperation(null);
+    this._changedNumber.notify(this.getCurrentNumber());
   }
 
   changeSign() {
-    if (this._isWaitForEnter || !this._secondNumber) {
-      this._firstNumber= String(-this._firstNumber);
-      this._changedNumber.notify(this._firstNumber);
-    }
-    else {
-      this._secondNumber = String(-this._secondNumber);
-      this._changedNumber.notify(this._secondNumber);
-    }
-
+      this.changeCurrentNumber(String(-this.getCurrentNumber()));
+      this._isWaitForEnter = false;
+      this._changedNumber.notify(this.getCurrentNumber());
   }
 
+
   percent() {
-    this.changeCurrentNumber(String(this._firstNumber / 100 * +this._secondNumber));
-    this._changedNumber.notify(this.getCurrentNumber());
+    if (this._operandValue != null) {
+      this._operandValue = String(+this._operandValue / 100);
+      this._changedNumber.notify(this.getCurrentNumber());
+    }
   }
 
   /**@param {number} first*/
   /**@param {number} second*/
-  /**@return {number}*/
   divide(first, second) {
     return first / second;
   }
 
   /**@param {number} first*/
   /**@param {number} second*/
-  /**@return {number}*/
   multiple(first, second) {
     return first * second;
   }
 
   /**@param {number} first*/
   /**@param {number} second*/
-  /**@return {number}*/
   sum(first, second) {
-    return +first + +second;
+    return first + second;
   }
 
   /**@param {number} first*/
   /**@param {number} second*/
-  /**@return {number}*/
   subtract(first, second) {
     return first - second;
   }
