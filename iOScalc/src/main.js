@@ -35,6 +35,14 @@ function main() {
     document.getElementById(buttonId)
         .addEventListener("click", func);
   }
+
+  function onKeyDown(e) {
+    var evtobj = window.event? event : e
+    if (evtobj.keyCode == 90 && evtobj.ctrlKey && !evtobj.shiftKey) alert("Ctrl+z");
+    if (evtobj.keyCode == 90 && evtobj.ctrlKey && evtobj.shiftKey) alert("Ctrl+Shift+z");
+  }
+
+  document.addEventListener("keydown", onKeyDown);
  controller;
 }
 
