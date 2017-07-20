@@ -26,13 +26,13 @@ class Controller {
     _v.onDecimalButtonClicked().attach( ()=>
         _m.addDecimal());
 
-    _v.onAddButtonClicked().attach( ()=> _m.setOperation(_m.sum));
+    _v.onAddButtonClicked().attach( ()=> _m.setOperation(sum));
 
-    _v.onDivideButtonClicked().attach( ()=> _m.setOperation(_m.divide));
+    _v.onDivideButtonClicked().attach( ()=> _m.setOperation(divide));
 
-    _v.onMultipleButtonClicked().attach( ()=> _m.setOperation(_m.multiple));
+    _v.onMultipleButtonClicked().attach( ()=> _m.setOperation(multiple));
 
-    _v.onSubtractButtonClicked().attach( ()=> _m.setOperation(_m.subtract));
+    _v.onSubtractButtonClicked().attach( ()=> _m.setOperation(subtract));
 
     _v.onCalculateButtonClicked().attach( ()=> {
       let currentValue = this._model.getCurrentValue();
@@ -54,8 +54,8 @@ class Controller {
       _m.clear();
     });
 
-    _m.onNumberChanged().attach( (number)=>
-        _v.updateDisplay(String(number)));
+    _m.onNumberChanged().attach( (content)=>
+        _v.updateDisplay(content));
   }
 
   undo() {

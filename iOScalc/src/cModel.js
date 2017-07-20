@@ -57,9 +57,9 @@ class Model {
     return this._currentOperation;
   }
 
-  /**@return {number}*/
+  /**@return {?string}*/
   getCurrentNumber() {
-    return +((this._operandValue === null)? this._currentValue : this._operandValue);
+    return (!this._operandValue)? this._currentValue : this._operandValue;
   }
 
   /**@param {string | number} newValue*/
@@ -69,8 +69,6 @@ class Model {
         this._operandValue  = String(newValue);
   }
 
-
-
   /**@param {number} digit*/
   addDigit(digit) {
     if (this._isWaitForEnter) {
@@ -79,7 +77,7 @@ class Model {
       this._wasDecimalAdded = false;
     }
     else {
-      this.changeCurrentNumber(String(this.getCurrentNumber()) + String(digit));
+      this.changeCurrentNumber(this.getCurrentNumber() + String(digit));
     }
     this._changedNumber.notify(this.getCurrentNumber());
   }
@@ -110,33 +108,9 @@ class Model {
 
 
   percent() {
-    if (this._operandValue != null) {
+    if (!this._operandValue) {
       this._operandValue = String(+this._operandValue / 100);
       this._changedNumber.notify(this.getCurrentNumber());
     }
-  }
-
-  /**@param {number} first*/
-  /**@param {number} second*/
-  divide(first, second) {
-    return first / second;
-  }
-
-  /**@param {number} first*/
-  /**@param {number} second*/
-  multiple(first, second) {
-    return first * second;
-  }
-
-  /**@param {number} first*/
-  /**@param {number} second*/
-  sum(first, second) {
-    return first + second;
-  }
-
-  /**@param {number} first*/
-  /**@param {number} second*/
-  subtract(first, second) {
-    return first - second;
   }
 }

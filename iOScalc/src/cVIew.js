@@ -89,10 +89,10 @@ class View {
 
   /**@param {string | number} content*/
   updateDisplay(content) {
-    content = String(Math.round(+content * 10000) / 10000);
-    if (content.length > 6) {
-        content = String((+content).toExponential());
-    }
+    // content = String(Math.round(+content * 10000) / 10000);
+    // if (content.length > 6) {
+    //     content = String((+content).toExponential());
+    // }
 
     this._display.textContent = String(content);
   }
