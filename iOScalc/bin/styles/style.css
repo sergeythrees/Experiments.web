@@ -47,14 +47,14 @@ body {
   flex-basis: 25%;
   font-size: 41px;
   font-weight: 300;
-  transition: opacity 0.6s;
+  transition: opacity .6s;
   padding: 14px;
   border-right: 1px solid #000000;
   border-bottom: 1px solid #000000; }
 
 .keyboard__button:active,
 .keyboard__button.is-active {
-  opacity: 0.9;
+  opacity: .9;
   transition: opacity 0s; }
 
 .keyboard__button_operation {
@@ -79,7 +79,8 @@ body {
   margin-left: -6px; }
 
 .change-sign-plus {
-  margin-right: -6px; }
+  margin-right: -8px;
+  margin-top: -4px; }
 
 .keyboard__button_wide {
   padding-left: 36px;
@@ -95,5 +96,3 @@ body {
   font-weight: 300;
   line-height: 0;
   padding-bottom: 28px; }
-
-/*# sourceMappingURL=style.css.map */

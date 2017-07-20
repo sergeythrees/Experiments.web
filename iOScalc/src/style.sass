@@ -1,10 +1,11 @@
-html, 
+$font_stack: 'Roboto', sans-serif
+
+html,
 body
   margin: 0
   padding: 0
 
 body
-  font-family: 'Roboto', sans-serif
   font-weight: 100
 
 .calc
@@ -42,7 +43,7 @@ body
 
 .keyboard__button
   border: none
-  font-family: 'Roboto', sans-serif
+  font-family: $font_stack
   margin: 0
   background: #C9CACC
   flex-basis: 25%
@@ -80,7 +81,8 @@ body
   margin-left: -6px
 
 .change-sign-plus
-  margin-right: -6px
+  margin-right: -8px
+  margin-top: -4px
 
 .keyboard__button_wide
   padding-left: 36px

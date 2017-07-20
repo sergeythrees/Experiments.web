@@ -39,7 +39,10 @@ class Model {
 
   /**@return {number}*/
   getOperandValue() {
-    return this._operandValue ? +this._operandValue : +this._currentValue;
+    if (!this._operandValue) {
+      this._operandValue = this._currentValue;
+    }
+    return +this._operandValue;
   }
 
   /**@param {Function} operation*/

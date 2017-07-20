@@ -58,6 +58,7 @@ class cHistory {
 
     if (this._commands.length > 10) {
       this._commands.pop();
+      this._lastCommandIndex--;
     }
   }
 
