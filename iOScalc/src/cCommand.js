@@ -20,7 +20,7 @@ class Command {
   }
 }
 
-class History {
+class cHistory {
   constructor() {
 
     /**@private {Array<Command>}*/

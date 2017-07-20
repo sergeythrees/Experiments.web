@@ -5,8 +5,8 @@ class Model {
     /**@private {?Function}*/
     this._currentOperation = null;
 
-    /**@private {Event}*/
-    this._changedNumber = new Event(this);
+    /**@private {cEvent }*/
+    this._changedNumber = new cEvent (this);
 
     /**@private {boolean}*/
     this._isWaitForEnter = true;
@@ -19,6 +19,11 @@ class Model {
 
     /**@private {?string}*/
     this._operandValue = null;
+  }
+
+  /**@return {cEvent }*/
+  onNumberChanged() {
+    return this._changedNumber;
   }
 
   /**@return {number}*/
@@ -44,6 +49,26 @@ class Model {
     this._isWaitForEnter = true;
   }
 
+  /**@return {Function}*/
+  getOperation() {
+    return this._currentOperation;
+  }
+
+  /**@return {number}*/
+  getCurrentNumber() {
+    return +((this._operandValue === null)? this._currentValue : this._operandValue);
+  }
+
+  /**@param {string | number} newValue*/
+  changeCurrentNumber(newValue) {
+    !this._currentOperation ?
+        this._currentValue = String(newValue) :
+        this._operandValue  = String(newValue);
+  }
+
+
+
+  /**@param {number} digit*/
   addDigit(digit) {
     if (this._isWaitForEnter) {
       this.changeCurrentNumber(digit);
@@ -54,28 +79,6 @@ class Model {
       this.changeCurrentNumber(String(this.getCurrentNumber()) + String(digit));
     }
     this._changedNumber.notify(this.getCurrentNumber());
-  }
-
-  /**@return {number}*/
-  getCurrentNumber() {
-    return ((this._operandValue == null) ? this._currentValue : this._operandValue);
-  }
-
-  /**@param {string | number} newValue*/
-  changeCurrentNumber(newValue) {
-    !this._currentOperation ?
-        this._currentValue = String(newValue) :
-        this._operandValue  = String(newValue);
-  }
-
-  /**@return {Function}*/
-  getOperation() {
-    return this._currentOperation;
-  }
-
-  /**@return {Event}*/
-  onNumberChanged() {
-    return this._changedNumber;
   }
 
   addDecimal() {

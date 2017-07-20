@@ -7,7 +7,7 @@ function main() {
   /**@type {Model}*/
   const model = new Model();
   /**@type {Controller}*/
-  const controller = new Controller(view, model, new (History));
+  const controller = new Controller(view, model, new (cHistory));
 
   /**@type {Array<string, Function>}*/
   let handlersMap =

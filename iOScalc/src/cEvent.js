@@ -1,4 +1,4 @@
-class Event {
+class cEvent {
 
   /**@param {?Object} sender*/
   constructor(sender) {

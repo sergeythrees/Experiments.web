@@ -1,8 +1,11 @@
 {
-  "name"    : "your-app",
-  "version" : "0.1.0",
-  "main"    : "app.js",
-  "scripts" : {
+  "name": "your-app",
+  "version": "0.1.0",
+  "main": "app.js",
+  "scripts": {
     "start": "electron ."
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
   }
 }

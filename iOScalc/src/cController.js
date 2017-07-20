@@ -2,7 +2,7 @@ class Controller {
 
   /**@param {View} view*/
   /**@param {Model} model*/
-  /**@param {History} history*/
+  /**@param {cHistory} history*/
   constructor(view, model, history) {
 
     /**@private {View}*/
@@ -11,7 +11,7 @@ class Controller {
     /**@private {Model}*/
     this._model = model;
 
-    /**@private {History}*/
+    /**@private {cHistory}*/
     this._history = history;
 
     /**@const {View}*/
