@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>iOS Calculator</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:100,300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+  <div class="calc">
+    <div class="display">
+      <div class="display__content" id="displayId">
+	  0
+      </div>
+    </div>
+    <div class="keyboard">
+      <button class="keyboard__button keyboard__button_dark" id="AC">AC</button>
+      <button class="keyboard__button keyboard__button-change-sign keyboard__button_dark" id="+/-">
+          <sup class="change-sign-plus">+</sup>⁄<sub class="change-sign-minus">-</sub>
+      </button>
+      <button class="keyboard__button keyboard__button_dark" id="%">%</button>
+      <button class="keyboard__button keyboard__button_operation" id="÷">÷</button>
+
+      <button class="keyboard__button" id="7">7</button>
+      <button class="keyboard__button" id="8">8</button>
+      <button class="keyboard__button" id="9">9</button>
+      <button class="keyboard__button keyboard__button-multiply keyboard__button_operation" id="*">×</button>
+
+      <button class="keyboard__button" id="4">4</button>
+      <button class="keyboard__button" id="5">5</button>
+      <button class="keyboard__button" id="6">6</button>
+      <button class="keyboard__button keyboard__button-subtract keyboard__button_operation" id="-">–</button>
+
+      <button class="keyboard__button" id="1">1</button>
+      <button class="keyboard__button" id="2">2</button>
+      <button class="keyboard__button" id="3">3</button>
+      <button class="keyboard__button keyboard__button_operation"  id="+">+</button>
+
+      <button class="keyboard__button keyboard__button_wide" id="0">0</button>
+      <button class="keyboard__button keyboard__button-decimal" id=",">,</button>
+      <button class="keyboard__button keyboard__button_operation" id="=">=</button>
+
+      <script src="../src/mathFunctions.js"></script>
+      <script src="../src/cCommand.js"></script>
+      <script src="../src/cEvent.js"></script>
+      <script src="../src/cVIew.js"></script>
+      <script src="../src/cModel.js"></script>
+      <script src="../src/cController.js"></script>
+      <script src="../src/main.js"></script>
+
+      <!--<script src="./build/build_closure.js"></script>-->
+    </div>
+  </div>
+</body>
+</html>
