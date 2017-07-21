@@ -1,23 +1,20 @@
 class cEvent {
 
-  /**@param {?Object} sender*/
-  constructor(sender) {
-    /**@private {?Object}*/
-    this._sender = sender;
+  constructor() {
 
-    /**@private {Array<Function>}*/
-    this._listeners = [];
+    /**@private {Array<!Function>}*/
+    this._handlers = [];
   }
 
   /**@param {?string | ?number} content*/
   notify(content = null) {
-    this._listeners.forEach( (listener)=> {
-      listener(content);
+    this._handlers.forEach( (handler)=> {
+      handler(content);
     });
   }
 
-  /**@param {!Function} listener*/
-  attach(listener) {
-    this._listeners.push(listener);
+  /**@param {!Function} handler*/
+  attach(handler) {
+    this._handlers.push(handler);
   }
 }
